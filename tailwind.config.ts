@@ -8,6 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'imas-as': '#f34f6d',
+        'imas-cg': '#2681c8',
+        'imas-ml': '#ffc30b',
+        'imas-sm': '#0fbe94',
+        'imas-sc': '#8dbbff',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

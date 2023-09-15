@@ -1,22 +1,64 @@
-'use client';
+"use client";
 
-import { useSearchParams } from 'next/navigation';
+import { ImasBrand, NowPlaying } from "@/types";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
+const BrandColorMap: { [key in ImasBrand]: string } = {
+  [ImasBrand.AS]: "#f34f6d",
+  [ImasBrand.CG]: "#2681c8",
+  [ImasBrand.ML]: "#ffc30b",
+  [ImasBrand.SM]: "#0fbe94",
+  [ImasBrand.SC]: "#8dbbff",
+}
 
 export default function Display() {
+  const wsRef = useRef<WebSocket>();
   const searchParams = useSearchParams();
-  const isDebug = searchParams.get("debug") === 'true';
+  const isDebug = searchParams.get("debug") === "true";
+
+  const [playHistory, setPlayHistory] = useState<NowPlaying[]>([]);
+
+  useEffect(() => {
+    console.log("initial socket");
+    wsRef.current = new WebSocket("ws://localhost:9001");
+    const { current: ws } = wsRef;
+
+    ws.addEventListener("open", () => {
+      console.log("open socket");
+    });
+    ws.addEventListener("message", (msg) => {
+      const nowPlaying: NowPlaying = JSON.parse(msg.data);
+      console.log("nowPlaying: ", nowPlaying);
+      setPlayHistory((history) => [...history, nowPlaying]);
+    });
+  }, []);
+
   return (
     <main>
-      <div className={`flex flex-col  p-2 items-start text-white ${isDebug ? 'bg-black' : ''}`}>
-        {/* <p className="mb-2 text-lg bg-red-500 px-1">Now Playing</p> */}
-        <p className="mb-4 text-3xl bg-blue-300 px-2 pb-1">Now Playing</p>
-        <h2 className="title font-bold text-white text-7xl mb-1">
-          夢が夢じゃなくなるその日まで
-        </h2>
-        <p className="artist text-white text-4xl">
-          ノクチル (和久井優, 土屋李央, 田嶌紗蘭, 岡咲美保)
-        </p>
+      <div
+        className={`flex flex-col  p-2 items-start text-white ${
+          isDebug ? "bg-black" : ""
+        }`}
+      >
+        {playHistory.length >= 1 &&
+          playHistory.map((nowPlaying, index) =>
+            index === playHistory.length - 1 ? (
+              <>
+                <p className={`mb-4 rounded-sm text-3xl px-2 pb-1 bg-imas-${nowPlaying.imasBrand}`}>
+                  Now Playing
+                </p>
+                <h2 className="title font-bold text-white text-7xl mb-1">
+                  {nowPlaying.title}
+                </h2>
+                <p className="artist text-white text-4xl">
+                  {nowPlaying.artist}
+                </p>
+              </>
+            ) : (
+              <></>
+            )
+          )}
       </div>
       <style scoped jsx>
         {`
@@ -35,7 +77,6 @@ export default function Display() {
             opacity: 0;
           }
 
-          /*アニメーションの開始から終了までを指定する*/
           @keyframes fadeUpAnime {
             from {
               opacity: 0;
