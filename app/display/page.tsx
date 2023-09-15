@@ -10,7 +10,7 @@ const BrandColorMap: { [key in ImasBrand]: string } = {
   [ImasBrand.ML]: "#ffc30b",
   [ImasBrand.SM]: "#0fbe94",
   [ImasBrand.SC]: "#8dbbff",
-}
+};
 
 export default function Display() {
   const wsRef = useRef<WebSocket>();
@@ -36,16 +36,17 @@ export default function Display() {
 
   return (
     <main>
-      <div
-        className={`flex flex-col  p-2 items-start text-white ${
-          isDebug ? "bg-black" : ""
-        }`}
-      >
+      <div className={`${isDebug ? "bg-black" : ""}`}>
         {playHistory.length >= 1 &&
           playHistory.map((nowPlaying, index) =>
             index === playHistory.length - 1 ? (
-              <div key={index}>
-                <p className={`mb-4 rounded-sm text-3xl px-2 pb-1 bg-imas-${nowPlaying.imasBrand}`}>
+              <div
+                key={index}
+                className="flex flex-col  p-2 items-start text-white"
+              >
+                <p
+                  className={`mb-4 rounded-sm text-3xl px-2 pb-1 imas-${nowPlaying.imasBrand}`}
+                >
                   Now Playing
                 </p>
                 <h2 className="title font-bold text-white text-7xl mb-1">
@@ -62,6 +63,22 @@ export default function Display() {
       </div>
       <style scoped jsx>
         {`
+          .imas-as {
+            background-color: #f34f6d;
+          }
+          .imas-cg {
+            background-color: #2681c8;
+          }
+          .imas-ml {
+            background-color: #ffc30b;
+          }
+          .imas-sm {
+            background-color: #0fbe94;
+          }
+          .imas-sc {
+            background-color: #8dbbff;
+          }
+
           .title {
             animation-name: fadeUpAnime;
             animation-duration: 1s;
