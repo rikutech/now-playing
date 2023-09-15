@@ -151,7 +151,9 @@ export default function Home() {
                 再生
               </button>
             ) : (
-              <>
+              <div className="flex flex-col">
+              <p>NowPlaying: {songs[currentSong].title}</p>
+              <div className="flex flex-row space-x-2">
                 <button
                   className=" bg-red-600 text-xl text-white px-2 py-1 rounded-md"
                   onClick={playBack}
@@ -164,7 +166,8 @@ export default function Home() {
                 >
                   次の曲
                 </button>
-              </>
+              </div>
+              </div>
             )}
           </div>
         </div>

@@ -49,12 +49,17 @@ export default function Display() {
                 >
                   Now Playing
                 </p>
-                <h2 className="title font-bold text-white text-7xl mb-1">
-                  {nowPlaying.title}
-                </h2>
-                <p className="artist text-white text-4xl">
-                  {nowPlaying.artist}
-                </p>
+                <div className="flex flex-row">
+                  <span className="title font-bold text-white text-7xl">{nowPlaying.trackNumber}.</span>
+                  <div className="flex flex-col items-start">
+                    <h2 className="title font-bold text-white text-7xl mb-1">
+                      {nowPlaying.title}
+                    </h2>
+                    <p className="artist text-white text-4xl">
+                      {nowPlaying.artist}
+                    </p>
+                  </div>
+                </div>
               </div>
             ) : (
               <div key={index}></div>
