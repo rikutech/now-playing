@@ -44,7 +44,7 @@ export default function Display() {
         {playHistory.length >= 1 &&
           playHistory.map((nowPlaying, index) =>
             index === playHistory.length - 1 ? (
-              <>
+              <div key={index}>
                 <p className={`mb-4 rounded-sm text-3xl px-2 pb-1 bg-imas-${nowPlaying.imasBrand}`}>
                   Now Playing
                 </p>
@@ -54,9 +54,9 @@ export default function Display() {
                 <p className="artist text-white text-4xl">
                   {nowPlaying.artist}
                 </p>
-              </>
+              </div>
             ) : (
-              <></>
+              <div key={index}></div>
             )
           )}
       </div>
