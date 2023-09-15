@@ -10,11 +10,11 @@ export default function Display() {
     <main>
       <div className={`flex flex-col  p-2 items-start text-white ${isDebug ? 'bg-black' : ''}`}>
         {/* <p className="mb-2 text-lg bg-red-500 px-1">Now Playing</p> */}
-        <p className="mb-2 text-lg bg-blue-300 px-1">Now Playing</p>
-        <h2 className="title font-bold text-white text-4xl">
+        <p className="mb-4 text-3xl bg-blue-300 px-2 pb-1">Now Playing</p>
+        <h2 className="title font-bold text-white text-7xl mb-1">
           夢が夢じゃなくなるその日まで
         </h2>
-        <p className="artist text-white text-xl">
+        <p className="artist text-white text-4xl">
           ノクチル (和久井優, 土屋李央, 田嶌紗蘭, 岡咲美保)
         </p>
       </div>
