@@ -17,6 +17,8 @@ export const ImasBrand = {
   ML: 'ml',
   SM: 'sm',
   SC: 'sc',
+  961: '961',
+  ALL: 'all'
 } as const;
 
 export type ImasBrand = (typeof  ImasBrand)[keyof typeof ImasBrand];

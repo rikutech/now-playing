@@ -126,6 +126,8 @@ export default function Home() {
                 <option value={ImasBrand.ML}>ミリ</option>
                 <option value={ImasBrand.SM}>M</option>
                 <option value={ImasBrand.SC}>シャニ</option>
+                <option value={ImasBrand[961]}>961</option>
+                <option value={ImasBrand.ALL}>合同</option>
               </select>
               <div className="flex flex-row space-x-1">
                 <button onClick={() => moveUp(i)}>↑</button>

@@ -1,16 +1,8 @@
 "use client";
 
-import { ImasBrand, NowPlaying } from "@/types";
+import { NowPlaying } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-
-const BrandColorMap: { [key in ImasBrand]: string } = {
-  [ImasBrand.AS]: "#f34f6d",
-  [ImasBrand.CG]: "#2681c8",
-  [ImasBrand.ML]: "#ffc30b",
-  [ImasBrand.SM]: "#0fbe94",
-  [ImasBrand.SC]: "#8dbbff",
-};
 
 export default function Display() {
   const wsRef = useRef<WebSocket>();
@@ -82,6 +74,9 @@ export default function Display() {
           }
           .imas-sc {
             background-color: #8dbbff;
+          }
+          .imas-961 {
+            background-color: #000000;
           }
 
           .title {
